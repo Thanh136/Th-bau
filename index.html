@@ -195,7 +195,8 @@ footer a:hover{color:var(--accent)}
       <p class="sub">Schildern Sie kurz Ihr Vorhaben. Ich melde mich zeitnah bei Ihnen.</p>
       <ul class="chk"><li>Statik und Tragwerksplanung</li><li>Baumanagement und Bauüberwachung</li><li>Sonstige Ingenieurleistungen</li></ul>
     </div>
-    <form class="f" id="af">
+    <form class="f" id="af" >
+      <input id="hp" name="hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       <div><label for="n">Name</label><input id="n" required autocomplete="name"></div>
       <div><label for="m">E-Mail</label><input id="m" type="email" required autocomplete="email"></div>
       <div><label for="t">Telefon (optional)</label><input id="t" type="tel" autocomplete="tel"></div>
@@ -272,10 +273,19 @@ var MAIL="thanh.huynh@th-bau.com";
 document.getElementById("af").addEventListener("submit",function(e){
  e.preventDefault();
  var v=function(i){return document.getElementById(i).value.trim()};
- var body="Name: "+v("n")+"\nE-Mail: "+v("m")+"\nTelefon: "+(v("t")||"-")+"\n\n"+v("x");
- var url="mailto:"+MAIL+"?subject="+encodeURIComponent("Anfrage: "+v("b"))+"&body="+encodeURIComponent(body);
- document.getElementById("st").innerHTML="Ihr E-Mail-Programm wird geöffnet. Falls nicht: <a href=\""+url+"\">hier klicken</a>.";
- window.location.href=url;
+ var st=document.getElementById("st"),btn=document.querySelector("#af button[type=submit]");
+ if(document.getElementById("hp").value){return}
+ var fallback="mailto:"+MAIL+"?subject="+encodeURIComponent("Anfrage: "+v("b"))+"&body="+encodeURIComponent("Name: "+v("n")+"\nE-Mail: "+v("m")+"\nTelefon: "+(v("t")||"-")+"\n\n"+v("x"));
+ btn.disabled=true;st.textContent="Wird gesendet …";
+ fetch("https://formsubmit.co/ajax/"+MAIL,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
+  body:JSON.stringify({name:v("n"),email:v("m"),telefon:v("t")||"-",betreff:v("b"),nachricht:v("x"),_subject:"Anfrage über th-bau.com: "+v("b"),_template:"table",_captcha:"false"})})
+ .then(function(r){return r.json()})
+ .then(function(d){
+  if(d&&(d.success===true||d.success==="true")){st.textContent="Vielen Dank! Ihre Anfrage wurde gesendet. Ich melde mich zeitnah bei Ihnen.";document.getElementById("af").reset();}
+  else{throw new Error("fail")}
+ })
+ .catch(function(){st.innerHTML="Das Senden hat leider nicht geklappt. <a href=\""+fallback+"\">Bitte per E-Mail senden</a> oder direkt an "+MAIL+".";})
+ .then(function(){btn.disabled=false});
 });
 </script>
 </body>
