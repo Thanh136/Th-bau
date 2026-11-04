@@ -278,8 +278,8 @@ document.getElementById("af").addEventListener("submit",function(e){
  var fallback="mailto:"+MAIL+"?subject="+encodeURIComponent("Anfrage: "+v("b"))+"&body="+encodeURIComponent("Name: "+v("n")+"\nE-Mail: "+v("m")+"\nTelefon: "+(v("t")||"-")+"\n\n"+v("x"));
  btn.disabled=true;st.textContent="Wird gesendet …";
  var ac=new AbortController(),tm=setTimeout(function(){ac.abort()},20000);
- fetch("https://formsubmit.co/ajax/"+MAIL,{method:"POST",signal:ac.signal,headers:{"Content-Type":"application/json","Accept":"application/json"},
-  body:JSON.stringify({name:v("n"),email:v("m"),telefon:v("t")||"-",betreff:v("b"),nachricht:v("x"),_subject:"Anfrage über th-bau.com: "+v("b"),_template:"table",_captcha:"false"})})
+ fetch("https://api.web3forms.com/submit",{method:"POST",signal:ac.signal,headers:{"Content-Type":"application/json","Accept":"application/json"},
+  body:JSON.stringify({access_key:"1a37bf10-fbd5-474d-9adb-ffa3de86484d",subject:"Anfrage über th-bau.com: "+v("b"),from_name:"th-bau.com",name:v("n"),email:v("m"),telefon:v("t")||"-",betreff:v("b"),message:v("x")})})
  .then(function(r){return r.json()})
  .then(function(d){
   if(d&&(d.success===true||d.success==="true")){st.textContent="Vielen Dank für Ihre Nachricht. Wir werden uns so schnell wie möglich bei Ihnen melden.";document.getElementById("af").reset();}
