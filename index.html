@@ -91,8 +91,8 @@ ul.chk li::before{content:"";position:absolute;left:2px;top:15px;width:12px;heig
 #lb.on{display:block}
 #lb img{position:absolute;left:0;top:0;transform-origin:0 0;max-width:none;background:#fff;cursor:grab;-webkit-user-drag:none;user-select:none;will-change:transform}
 #lb img.drag{cursor:grabbing}
-#lb .bar{position:fixed;top:0;left:0;right:0;z-index:51;display:flex;align-items:center;gap:8px;padding:calc(8px + env(safe-area-inset-top,0px)) 12px 8px;background:linear-gradient(rgba(0,0,0,.75),rgba(0,0,0,0))}
-#lb .t{flex:1;color:#cfd4d9;font-size:.8rem;line-height:1.3}
+#lb .bar{position:fixed;top:0;left:0;right:0;z-index:51;display:flex;align-items:center;gap:8px;padding:calc(8px + env(safe-area-inset-top,0px)) 12px 8px;background:rgba(0,0,0,.82)}
+#lb .t{flex:1;min-width:0;color:#cfd4d9;font-size:.72rem;line-height:1.25;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 #lb .b{border:0;cursor:pointer;font:inherit;font-weight:700;background:rgba(255,255,255,.16);color:#fff;min-width:42px;height:40px;border-radius:6px;font-size:1.2rem;line-height:1}
 #lb .x{background:var(--accent);color:var(--accent-ink);font-size:.9rem;padding:0 14px}
 .plans-wrap{margin-top:64px;padding-top:40px;border-top:1px solid rgba(255,255,255,.18);text-align:center}
@@ -209,8 +209,8 @@ nav a.cta{padding:8px 14px;margin-left:auto}
       <h3>Musterpläne</h3>
       <p class="sub">Auszug aus der Ausführungsplanung.</p>
       <div class="plans">
-      <article class="proj"><div class="ph plan has" role="button" tabindex="0" aria-label="Bewehrungsplan vergrößern" data-zoom><img id="planimg" src="images/muster-bewehrungsplan-decke-uber-erdgeschoss-und-s.jpg?v=2" alt="Muster Bewehrungsplan Decke über Erdgeschoss und Stützen" width="4200" height="2971"><span class="zh">Vergrößern</span></div><div class="body"><h3>Muster Bewehrungsplan</h3><p class="type">Bewehrung Decke über Erdgeschoss und Stützen</p></div></article>
-      <article class="proj"><div class="ph plan has" role="button" tabindex="0" aria-label="Schalplan vergrößern" data-zoom><img src="images/muster-schalplan-decke-uber-erdgeschoss.jpg?v=2" alt="Muster Schalplan Decke über Erdgeschoss" width="4200" height="2971"><span class="zh">Vergrößern</span></div><div class="body"><h3>Muster Schalplan</h3><p class="type">Schalplan Decke über Erdgeschoss</p></div></article>
+      <article class="proj"><div class="ph plan has" role="button" tabindex="0" aria-label="Bewehrungsplan vergrößern" data-zoom data-vector="plans/bewehrungsplan-muster.svg" data-pdf="plans/bewehrungsplan-muster.pdf"><img id="planimg" src="images/muster-bewehrungsplan-decke-uber-erdgeschoss-und-s.jpg?v=2" alt="Muster Bewehrungsplan Decke über Erdgeschoss und Stützen" width="4200" height="2971"><span class="zh">Vergrößern</span></div><div class="body"><h3>Muster Bewehrungsplan</h3><p class="type">Bewehrung Decke über Erdgeschoss und Stützen</p></div></article>
+      <article class="proj"><div class="ph plan has" role="button" tabindex="0" aria-label="Schalplan vergrößern" data-zoom data-vector="plans/schalplan-muster.svg" data-pdf="plans/schalplan-muster.pdf"><img src="images/muster-schalplan-decke-uber-erdgeschoss.jpg?v=2" alt="Muster Schalplan Decke über Erdgeschoss" width="4200" height="2971"><span class="zh">Vergrößern</span></div><div class="body"><h3>Muster Schalplan</h3><p class="type">Schalplan Decke über Erdgeschoss</p></div></article>
       </div>
     </div>
   </div>
@@ -302,25 +302,29 @@ nav a.cta{padding:8px 14px;margin-left:auto}
     <div><h3>Navigation</h3><a href="#leistungen">Leistungen</a><a href="#referenzen">Referenzen</a><a href="#anfrage">Kontakt</a><a href="#impressum">Impressum</a><a href="#datenschutz">Datenschutz</a></div>
   </div>
 </footer>
-<div id="lb" role="dialog" aria-label="Bildansicht"><div class="bar"><span class="t">Zoomen: zwei Finger oder Doppeltipp</span><button class="b" type="button" data-z="out" aria-label="Verkleinern">−</button><button class="b" type="button" data-z="in" aria-label="Vergrößern">+</button><button class="b x" type="button" data-z="close">Schließen</button></div><img alt="" draggable="false"></div>
+<div id="lb" role="dialog" aria-label="Bildansicht"><div class="bar"><span class="t">Zwei Finger: Zoom</span><button class="b" type="button" data-z="out" aria-label="Verkleinern">−</button><button class="b" type="button" data-z="in" aria-label="Vergrößern">+</button><a class="b" id="pdfl" href="#" target="_blank" rel="noopener" style="display:none;align-items:center;justify-content:center;padding:0 12px;font-size:.85rem;text-decoration:none">PDF</a><button class="b x" type="button" data-z="close">Schließen</button></div><img alt="" draggable="false"></div>
 <script>
 (function(){
 var lb=document.getElementById("lb"),im=lb.querySelector("img"),TOP=56;
-var s=1,x=0,y=0,bw=0,bh=0,vw=0,vh=0,maxS=4,ptrs={},lastTap=0,lastTapX=0,lastTapY=0,moved=false;
+var s=1,x=0,y=0,bw=0,bh=0,vw=0,vh=0,maxS=4,sR=1,vec=false,tmr=null,ptrs={},lastTap=0,lastTapX=0,lastTapY=0,moved=false;
 function view(){vw=lb.clientWidth;vh=lb.clientHeight}
 function clampS(v){return Math.max(1,Math.min(maxS,v))}
 function clampPos(){var sw=bw*s,sh=bh*s,ah=vh-TOP;
  if(sw<=vw){x=(vw-sw)/2}else{x=Math.min(0,Math.max(vw-sw,x))}
  if(sh<=ah){y=TOP+(ah-sh)/2}else{y=Math.min(TOP,Math.max(vh-sh,y))}}
-function apply(){clampPos();im.style.transform="translate("+x+"px,"+y+"px) scale("+s+")"}
+function commit(){if(!vec)return;sR=s;im.style.width=bw*s+"px";im.style.height=bh*s+"px";im.style.transform="translate("+x+"px,"+y+"px)"}
+function apply(){clampPos();im.style.transform="translate("+x+"px,"+y+"px) scale("+(s/sR)+")";if(vec){clearTimeout(tmr);tmr=setTimeout(commit,160)}}
 function fit(){view();var nw=im.naturalWidth||1,nh=im.naturalHeight||1,ah=vh-TOP;
  var f=Math.min(vw/nw,ah/nh,1.4);bw=nw*f;bh=nh*f;im.style.width=bw+"px";im.style.height=bh+"px";
- maxS=Math.max(4,nw/bw*1.3);s=1;x=0;y=0;apply()}
+ maxS=vec?24:Math.max(4,nw/bw*1.3);sR=1;s=1;x=0;y=0;apply()}
 function zoomAt(ns,cx,cy){ns=clampS(ns);var k=ns/s;x=cx-(cx-x)*k;y=cy-(cy-y)*k;s=ns;apply()}
-function open(src,alt){im.onload=fit;im.src=src;im.alt=alt;lb.classList.add("on");document.body.style.overflow="hidden";if(im.complete&&im.naturalWidth){fit()}}
-function close(){lb.classList.remove("on");im.removeAttribute("src");document.body.style.overflow="";ptrs={}}
+var pdfl=document.getElementById("pdfl"),hint=lb.querySelector(".t"),HINT0=hint.textContent,cur=0;
+function open(src,alt,vsrc,pdf){var id=++cur;vec=false;hint.textContent=HINT0;im.onload=function(){fit()};im.src=src;im.alt=alt;lb.classList.add("on");document.body.style.overflow="hidden";if(im.complete&&im.naturalWidth){fit()}
+ if(pdf){pdfl.href=pdf;pdfl.style.display="flex"}else{pdfl.style.display="none"}
+ if(vsrc){hint.textContent="Vektorplan lädt …";var pre=new Image();pre.onload=function(){if(id!==cur||!lb.classList.contains("on"))return;im.onload=null;vec=true;sR=1;im.style.width=bw*s+"px";im.style.height=bh*s+"px";sR=s;maxS=24;im.src=vsrc;hint.textContent="Vektorplan: bleibt scharf";apply()};pre.onerror=function(){if(id===cur)hint.textContent=HINT0};pre.src=vsrc}}
+function close(){cur++;vec=false;clearTimeout(tmr);lb.classList.remove("on");im.removeAttribute("src");document.body.style.overflow="";ptrs={}}
 document.querySelectorAll("[data-zoom]").forEach(function(z){var g=z.querySelector("img");
- function go(){open(g.src,g.alt)}
+ function go(){open(g.src,g.alt,z.getAttribute("data-vector"),z.getAttribute("data-pdf"))}
  z.addEventListener("click",go);z.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();go()}})});
 lb.addEventListener("click",function(e){var b=e.target.closest("[data-z]");if(!b)return;var d=b.getAttribute("data-z");
  if(d==="close"){close()}else if(d==="in"){zoomAt(s*1.5,vw/2,vh/2)}else if(d==="out"){zoomAt(s/1.5,vw/2,vh/2)}});
