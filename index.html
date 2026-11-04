@@ -4,6 +4,17 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>TH-BAU – Büro für Tragwerksplanung und sonstige Ingenieurleistungen</title>
+<meta name="description" content="TH-BAU – Ingenieurbüro Thanh Huynh in Düsseldorf: Tragwerksplanung, Statik, Schal- und Bewehrungspläne sowie Bauüberwachung und Baumanagement.">
+<meta name="theme-color" content="#1b2026">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231b2026'/%3E%3Cpath d='M32 10 55 52H9Z' fill='none' stroke='white' stroke-width='4' stroke-linejoin='round'/%3E%3Cpath d='M21 31H43L32 52Z' fill='none' stroke='white' stroke-width='4' stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:title" content="TH-BAU – Tragwerksplanung und Bauüberwachung">
+<meta property="og:description" content="TH-BAU – Ingenieurbüro Thanh Huynh in Düsseldorf: Tragwerksplanung, Statik, Schal- und Bewehrungspläne sowie Bauüberwachung und Baumanagement.">
+<meta property="og:url" content="https://www.th-bau.com/">
+<meta property="og:image" content="https://www.th-bau.com/images/3d-modell-tragwerk-keplerstrae-bergkamen.jpg">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"TH-BAU – Ingenieurbüro für Statik + Baumanagement","founder":"Thanh Huynh","url":"https://www.th-bau.com/","email":"thanh.huynh@th-bau.com","telephone":"+49 163 9654179","address":{"@type":"PostalAddress","streetAddress":"Erkrather Str. 64","postalCode":"40233","addressLocality":"Düsseldorf","addressCountry":"DE"},"areaServed":"DE","knowsAbout":["Tragwerksplanung","Statik","Bewehrungsplanung","Bauüberwachung","Baumanagement"]}</script>
+
 <style>
 :root{--bg:#f4f2ee;--surf:#fff;--ink:#16191d;--mute:#5c636b;--line:#d9d5cc;--dark:#1b2026;--accent:#e8590c;--accent-ink:#fff;--grid:rgba(255,255,255,.07);
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
@@ -21,6 +32,8 @@ header .wrap{display:flex;align-items:center;justify-content:space-between;flex-
 .logo img{height:68px;width:auto;display:block}
 nav{display:flex;gap:6px;flex-wrap:wrap}
 nav a{text-decoration:none;font-size:.9rem;padding:8px 12px;border-radius:4px;opacity:.85}
+nav a.cta{background:var(--accent);color:var(--accent-ink);font-weight:700;opacity:1;padding:9px 18px;margin-left:6px}
+nav a.cta:hover{filter:brightness(1.1);background:var(--accent)}
 nav a:hover{opacity:1;background:rgba(255,255,255,.1)}
 .hero{background:var(--dark);color:#fff;position:relative;overflow:hidden}
 .hero .wrap{padding-top:96px;padding-bottom:104px;position:relative}
@@ -76,6 +89,12 @@ ul.chk li::before{content:"";position:absolute;left:2px;top:15px;width:12px;heig
 #lb img.full{width:4200px;max-width:none;cursor:zoom-out}
 #lb .x{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));right:14px;z-index:51;border:0;background:var(--accent);color:var(--accent-ink);font:inherit;font-weight:700;padding:8px 16px;border-radius:4px;cursor:pointer}
 #lb .t{position:fixed;top:calc(16px + env(safe-area-inset-top,0px));left:16px;color:#cfd4d9;font-size:.85rem;z-index:51}
+.ph.zoom{cursor:zoom-in;overflow:hidden}
+.ph.zoom img{transition:transform .35s ease}
+.ph.zoom:hover img,.ph.zoom:focus-visible img{transform:scale(1.06)}
+.ph.zoom:not(.plan) .zh{opacity:0;transition:opacity .2s}
+.ph.zoom:not(.plan):hover .zh,.ph.zoom:not(.plan):focus-visible .zh{opacity:1}
+@media (prefers-reduced-motion:reduce){.ph.zoom img{transition:none}}
 .plans-wrap{margin-top:64px;padding-top:40px;border-top:1px solid rgba(255,255,255,.18);text-align:center}
 .plans-wrap h3{margin:0 0 8px;font-size:1.5rem}
 .plans-wrap .sub{margin:0 auto 32px}
@@ -114,12 +133,10 @@ footer a:hover{color:var(--accent)}
   <div class="wrap">
     <a class="logo" href="#start" aria-label="Thanh Huynh – Startseite"><img src="images/thanh-huynh.png" alt="Thanh Huynh" width="1000" height="255"></a>
     <nav>
-      <a href="#start">Startseite</a>
       <a href="#leistungen">Leistungen</a>
       <a href="#referenzen">Referenzen</a>
-      <a href="#anfrage">Anfrage</a>
-      <a href="#anfrage">Kontakt</a>
       <a href="#impressum">Impressum</a>
+      <a class="cta" href="#anfrage">Anfrage</a>
     </nav>
   </div>
 </header>
@@ -177,9 +194,9 @@ footer a:hover{color:var(--accent)}
     <h2>Als freiberuflicher Tragwerksplaner</h2>
     <p class="sub">Beispielprojekte mit Genehmigungs- und Ausführungsstatik.</p>
     <div class="projects">
-      <article class="proj"><div class="ph"><span class="year">2024</span><img src="images/3d-modell-tragwerk-keplerstrae-bergkamen.jpg" alt="3D-Modell Tragwerk Keplerstraße Bergkamen" loading="lazy" style="object-fit:contain;background:#fff"></div><div class="body"><h3>Keplerstraße – Bergkamen</h3><p class="type">Neubau Wohngebäude 8 WE + 2 BE</p><ul><li>Genehmigungsstatik</li><li>Vollumfängliche Ausführungsstatik</li></ul></div></article>
-      <article class="proj"><div class="ph"><span class="year">2025</span><img src="images/hinter-den-hofen.jpg" alt="Hinter den Höfen" loading="lazy" style="object-fit:contain;background:#fff"></div><div class="body"><h3>Hinter den Höfen – Düsseldorf</h3><p class="type">Neubau Wohngebäude 4 WE</p><ul><li>Genehmigungsstatik</li><li>Vollumfängliche Ausführungsstatik</li></ul></div></article>
-      <article class="proj"><div class="ph"><span class="year">2026</span><img src="images/reinickendorfer-strae-berlin.jpg" alt="Reinickendorfer Straße Berlin" loading="lazy" style="object-fit:contain;background:#fff"></div><div class="body"><h3>Reinickendorfer Str. – Berlin</h3><p class="type">Neubau Wohngebäude 9 WE</p><ul><li>Vollumfängliche Ausführungsstatik</li></ul></div></article>
+      <article class="proj"><div class="ph zoom" role="button" tabindex="0" data-zoom aria-label="Bild vergrößern"><span class="year">2024</span><img src="images/3d-modell-tragwerk-keplerstrae-bergkamen.jpg" alt="3D-Modell Tragwerk Keplerstraße Bergkamen" loading="lazy" style="object-fit:contain;background:#fff"><span class="zh">Vergrößern</span></div><div class="body"><h3>Keplerstraße – Bergkamen</h3><p class="type">Neubau Wohngebäude 8 WE + 2 BE</p><ul><li>Genehmigungsstatik</li><li>Vollumfängliche Ausführungsstatik</li></ul></div></article>
+      <article class="proj"><div class="ph zoom" role="button" tabindex="0" data-zoom aria-label="Bild vergrößern"><span class="year">2025</span><img src="images/hinter-den-hofen.jpg" alt="Hinter den Höfen" loading="lazy" style="object-fit:contain;background:#fff"><span class="zh">Vergrößern</span></div><div class="body"><h3>Hinter den Höfen – Düsseldorf</h3><p class="type">Neubau Wohngebäude 4 WE</p><ul><li>Genehmigungsstatik</li><li>Vollumfängliche Ausführungsstatik</li></ul></div></article>
+      <article class="proj"><div class="ph zoom" role="button" tabindex="0" data-zoom aria-label="Bild vergrößern"><span class="year">2026</span><img src="images/reinickendorfer-strae-berlin.jpg" alt="Reinickendorfer Straße Berlin" loading="lazy" style="object-fit:contain;background:#fff"><span class="zh">Vergrößern</span></div><div class="body"><h3>Reinickendorfer Str. – Berlin</h3><p class="type">Neubau Wohngebäude 9 WE</p><ul><li>Vollumfängliche Ausführungsstatik</li></ul></div></article>
     </div>
     <div class="plans-wrap">
       <span class="kicker">Planbeispiele</span>
@@ -198,7 +215,7 @@ footer a:hover{color:var(--accent)}
     <div>
       <span class="kicker">Anfrage</span>
       <h2>Projekt anfragen</h2>
-      <p class="sub">Schildern Sie kurz Ihr Vorhaben. Ich melde mich zeitnah bei Ihnen.</p>
+      <p class="sub">Sie können mich direkt unter <a href="tel:+491639654179" style="color:var(--accent);font-weight:700;white-space:nowrap">0163 9654179</a> kontaktieren oder bequem eine Anfrage hinterlassen. Schildern Sie kurz Ihr Vorhaben, ich melde mich zeitnah bei Ihnen.</p>
       <ul class="chk"><li>Statik und Tragwerksplanung</li><li>Baumanagement und Bauüberwachung</li><li>Sonstige Ingenieurleistungen</li></ul>
     </div>
     <form class="f" id="af" >
@@ -221,12 +238,12 @@ footer a:hover{color:var(--accent)}
     <h2>Als angestellter Tragwerksplaner bei KS Ingenieure, Wien</h2>
     <p class="sub">Projekte für namhafte Bauherren in Österreich.</p>
     <div class="projects">
-      <article class="proj"><div class="ph"><span class="year">2020</span><img src="images/laxenburger-strae.jpg" alt="Laxenburger Straße" loading="lazy"></div><div class="body"><h3>Laxenburger Straße</h3><p class="type">Neubau Wohngebäude</p><p class="meta"><b>Bauherr:</b> S+B Gruppe</p><p class="meta"><b>Leistung:</b> Vollumfängliche Ausführungsstatik</p></div></article>
-      <article class="proj"><div class="ph"><span class="year">2020</span><img src="images/mgc-plaza.jpg" alt="MGC Plaza" loading="lazy"></div><div class="body"><h3>MGC Plaza – Modecenterstraße</h3><p class="type">Neubau Wohngebäude</p><p class="meta"><b>Bauherr:</b> MGC Parkplatz Betriebs GmbH</p><p class="meta"><b>Leistung:</b> Beihilfe Ausführungsstatik</p></div></article>
-      <article class="proj"><div class="ph"><span class="year">2019</span><img src="images/breitenfurter-strae.jpg" alt="Breitenfurter Straße" loading="lazy"></div><div class="body"><h3>Breitenfurter Straße</h3><p class="type">Neubau Spar + Grundschule</p><p class="meta"><b>Bauherr:</b> Buwog</p><p class="meta"><b>Leistung:</b> Beihilfe Ausführungsstatik</p></div></article>
-      <article class="proj"><div class="ph"><span class="year">2019</span><img src="images/metropolitan.jpg" alt="Metropolitan" loading="lazy"></div><div class="body"><h3>Metropolitan – Karl-Popper-Str.</h3><p class="type">Neubau Wohngebäude + Hotel</p><p class="meta"><b>Bauherr:</b> STC Swiss Town Consult</p><p class="meta"><b>Leistung:</b> Beihilfe Ausführungsstatik</p></div></article>
-      <article class="proj"><div class="ph"><span class="year">2018</span><img src="images/triiiple-schnirchgasse.jpg" alt="TrIIIple Schnirchgasse" loading="lazy"></div><div class="body"><h3>TrIIIple – Schnirchgasse</h3><p class="type">Neubau Wohngebäude</p><p class="meta"><b>Bauherr:</b> Soravia</p><p class="meta"><b>Leistung:</b> Beihilfe Ausführungsstatik</p></div></article>
-      <article class="proj"><div class="ph"><span class="year">2018</span><img src="images/kundmanngasse.jpg" alt="Kundmanngasse" loading="lazy"></div><div class="body"><h3>Kundmanngasse</h3><p class="type">Kernsanierung Bürogebäude</p><p class="meta"><b>Bauherr:</b> Österreichische Sozialversicherung</p><p class="meta"><b>Leistung:</b> Beihilfe Ausführungsstatik</p></div></article>
+      <article class="proj"><div class="ph zoom" role="button" tabindex="0" data-zoom aria-label="Bild vergrößern"><span class="year">2020</span><img src="images/laxenburger-strae.jpg" alt="Laxenburger Straße" loading="lazy"><span class="zh">Vergrößern</span></div><div class="body"><h3>Laxenburger Straße</h3><p class="type">Neubau Wohngebäude</p><p class="meta"><b>Bauherr:</b> S+B Gruppe</p><p class="meta"><b>Leistung:</b> Vollumfängliche Ausführungsstatik</p></div></article>
+      <article class="proj"><div class="ph zoom" role="button" tabindex="0" data-zoom aria-label="Bild vergrößern"><span class="year">2020</span><img src="images/mgc-plaza.jpg" alt="MGC Plaza" loading="lazy"><span class="zh">Vergrößern</span></div><div class="body"><h3>MGC Plaza – Modecenterstraße</h3><p class="type">Neubau Wohngebäude</p><p class="meta"><b>Bauherr:</b> MGC Parkplatz Betriebs GmbH</p><p class="meta"><b>Leistung:</b> Beihilfe Ausführungsstatik</p></div></article>
+      <article class="proj"><div class="ph zoom" role="button" tabindex="0" data-zoom aria-label="Bild vergrößern"><span class="year">2019</span><img src="images/breitenfurter-strae.jpg" alt="Breitenfurter Straße" loading="lazy"><span class="zh">Vergrößern</span></div><div class="body"><h3>Breitenfurter Straße</h3><p class="type">Neubau Spar + Grundschule</p><p class="meta"><b>Bauherr:</b> Buwog</p><p class="meta"><b>Leistung:</b> Beihilfe Ausführungsstatik</p></div></article>
+      <article class="proj"><div class="ph zoom" role="button" tabindex="0" data-zoom aria-label="Bild vergrößern"><span class="year">2019</span><img src="images/metropolitan.jpg" alt="Metropolitan" loading="lazy"><span class="zh">Vergrößern</span></div><div class="body"><h3>Metropolitan – Karl-Popper-Str.</h3><p class="type">Neubau Wohngebäude + Hotel</p><p class="meta"><b>Bauherr:</b> STC Swiss Town Consult</p><p class="meta"><b>Leistung:</b> Beihilfe Ausführungsstatik</p></div></article>
+      <article class="proj"><div class="ph zoom" role="button" tabindex="0" data-zoom aria-label="Bild vergrößern"><span class="year">2018</span><img src="images/triiiple-schnirchgasse.jpg" alt="TrIIIple Schnirchgasse" loading="lazy"><span class="zh">Vergrößern</span></div><div class="body"><h3>TrIIIple – Schnirchgasse</h3><p class="type">Neubau Wohngebäude</p><p class="meta"><b>Bauherr:</b> Soravia</p><p class="meta"><b>Leistung:</b> Beihilfe Ausführungsstatik</p></div></article>
+      <article class="proj"><div class="ph zoom" role="button" tabindex="0" data-zoom aria-label="Bild vergrößern"><span class="year">2018</span><img src="images/kundmanngasse.jpg" alt="Kundmanngasse" loading="lazy"><span class="zh">Vergrößern</span></div><div class="body"><h3>Kundmanngasse</h3><p class="type">Kernsanierung Bürogebäude</p><p class="meta"><b>Bauherr:</b> Österreichische Sozialversicherung</p><p class="meta"><b>Leistung:</b> Beihilfe Ausführungsstatik</p></div></article>
     </div>
   </div>
 </section>
@@ -283,7 +300,7 @@ footer a:hover{color:var(--accent)}
     <div><h3>Navigation</h3><a href="#leistungen">Leistungen</a><a href="#referenzen">Referenzen</a><a href="#anfrage">Kontakt</a><a href="#impressum">Impressum</a><a href="#datenschutz">Datenschutz</a></div>
   </div>
 </footer>
-<div id="lb" role="dialog" aria-label="Plan"><span class="t">Plan antippen: Vergrößern / Verkleinern</span><button class="x" type="button">Schließen</button><img alt=""></div>
+<div id="lb" role="dialog" aria-label="Plan"><span class="t">Bild antippen: Vergrößern / Verkleinern</span><button class="x" type="button">Schließen</button><img alt=""></div>
 <script>
 (function(){var lb=document.getElementById("lb"),im=lb.querySelector("img"),cur=null;
 function open(src,alt){im.src=src;im.alt=alt;im.className="";lb.classList.add("on");lb.scrollTop=0;document.body.style.overflow="hidden"}
@@ -291,7 +308,8 @@ function close(){lb.classList.remove("on");im.removeAttribute("src");document.bo
 document.querySelectorAll("[data-zoom]").forEach(function(z){var g=z.querySelector("img");
 function go(){open(g.src,g.alt)}
 z.addEventListener("click",go);z.addEventListener("keydown",function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();go()}})});
-im.addEventListener("click",function(){im.classList.toggle("full")});
+im.addEventListener("click",function(){if(im.naturalWidth>2500){im.classList.toggle("full")}});
+im.addEventListener("load",function(){if(im.naturalWidth<2500){im.style.maxWidth=Math.round(im.naturalWidth*1.4)+"px";im.style.margin="56px auto 0"}else{im.style.maxWidth="";im.style.margin=""}});
 lb.querySelector(".x").addEventListener("click",close);
 document.addEventListener("keydown",function(e){if(e.key==="Escape")close()});})();
 </script>
