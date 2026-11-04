@@ -277,7 +277,8 @@ document.getElementById("af").addEventListener("submit",function(e){
  if(document.getElementById("hp").value){return}
  var fallback="mailto:"+MAIL+"?subject="+encodeURIComponent("Anfrage: "+v("b"))+"&body="+encodeURIComponent("Name: "+v("n")+"\nE-Mail: "+v("m")+"\nTelefon: "+(v("t")||"-")+"\n\n"+v("x"));
  btn.disabled=true;st.textContent="Wird gesendet …";
- fetch("https://formsubmit.co/ajax/"+MAIL,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
+ var ac=new AbortController(),tm=setTimeout(function(){ac.abort()},20000);
+ fetch("https://formsubmit.co/ajax/"+MAIL,{method:"POST",signal:ac.signal,headers:{"Content-Type":"application/json","Accept":"application/json"},
   body:JSON.stringify({name:v("n"),email:v("m"),telefon:v("t")||"-",betreff:v("b"),nachricht:v("x"),_subject:"Anfrage über th-bau.com: "+v("b"),_template:"table",_captcha:"false"})})
  .then(function(r){return r.json()})
  .then(function(d){
@@ -285,7 +286,7 @@ document.getElementById("af").addEventListener("submit",function(e){
   else{throw new Error("fail")}
  })
  .catch(function(){st.innerHTML="Das Senden hat leider nicht geklappt. <a href=\""+fallback+"\">Bitte per E-Mail senden</a> oder direkt an "+MAIL+".";})
- .then(function(){btn.disabled=false});
+ .then(function(){clearTimeout(tm);btn.disabled=false});
 });
 </script>
 </body>
