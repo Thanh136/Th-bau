@@ -281,7 +281,7 @@ document.getElementById("af").addEventListener("submit",function(e){
   body:JSON.stringify({name:v("n"),email:v("m"),telefon:v("t")||"-",betreff:v("b"),nachricht:v("x"),_subject:"Anfrage über th-bau.com: "+v("b"),_template:"table",_captcha:"false"})})
  .then(function(r){return r.json()})
  .then(function(d){
-  if(d&&(d.success===true||d.success==="true")){st.textContent="Danke für deine Nachricht, wir werden uns so schnell wie möglich zurück melden.";document.getElementById("af").reset();}
+  if(d&&(d.success===true||d.success==="true")){st.textContent="Vielen Dank für Ihre Nachricht. Wir werden uns so schnell wie möglich bei Ihnen melden.";document.getElementById("af").reset();}
   else{throw new Error("fail")}
  })
  .catch(function(){st.innerHTML="Das Senden hat leider nicht geklappt. <a href=\""+fallback+"\">Bitte per E-Mail senden</a> oder direkt an "+MAIL+".";})
