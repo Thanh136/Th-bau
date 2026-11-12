@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>TH-BAU – Büro für Tragwerksplanung und sonstige Ingenieurleistungen</title>
 <meta name="description" content="TH-BAU – Ingenieurbüro Thanh Huynh in Düsseldorf: Tragwerksplanung, Statik sowie Schal- und Bewehrungspläne.">
-<meta name="theme-color" content="#1b2026">
+<meta name="theme-color" content="#131a20">
 <meta name="color-scheme" content="dark">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231b2026'/%3E%3Cpath d='M32 10 55 52H9Z' fill='none' stroke='white' stroke-width='4' stroke-linejoin='round'/%3E%3Cpath d='M21 31H43L32 52Z' fill='none' stroke='white' stroke-width='4' stroke-linejoin='round'/%3E%3C/svg%3E">
 <meta property="og:type" content="website">
@@ -173,6 +173,14 @@ nav{width:100%;flex-wrap:nowrap;justify-content:space-between;gap:2px}
 nav a{padding:8px 6px;font-size:.8rem;white-space:nowrap}
 nav a.cta{padding:8px 14px;margin-left:auto}
 }
+
+/* TEST: Farbwelt Nebelwald (Schiefer, Moosgruen) */
+:root,:root:not([data-theme="light"]),:root[data-theme="dark"]{--bg:#1a232a;--surf:#222e36;--ink:#e6eae8;--mute:#9aa8a8;--line:#35444d;--dark:#131a20;--accent:#a8bea6;--accent-ink:#16201b;--grid:rgba(255,255,255,.05);color-scheme:dark}
+.hero{background:linear-gradient(165deg,#2b3d38 0%,#18222a 72%)}
+.dark{background:#2a363e}
+.sonst{background:#202b33}
+.chain .ico svg{stroke:#16201b}
+.chain .stb:hover,.chain .stb:focus-visible,.chain .stb[aria-pressed="true"]{background:rgba(168,190,166,.1)}
 </style>
 </head>
 <body>
@@ -252,7 +260,6 @@ nav a.cta{padding:8px 14px;margin-left:auto}
       <article class="proj"><div class="ph zoom" role="button" tabindex="0" data-zoom aria-label="Bild vergrößern"><span class="year">2026</span><img src="images/reinickendorfer-strae-berlin.jpg" alt="Reinickendorfer Straße Berlin" loading="lazy" style="object-fit:contain;background:#fff"><span class="zh">Vergrößern</span></div><div class="body"><h3>Reinickendorfer Str. – Berlin</h3><p class="type">Neubau Wohngebäude 9 WE</p><ul><li>Vollumfängliche Ausführungsplanung</li></ul></div></article>
     </div>
     <div class="plans-wrap">
-      <span class="kicker">Planbeispiele</span>
       <h3>Musterpläne</h3>
       <p class="sub">Auszug aus der Ausführungsplanung.</p>
       <h4 class="grp" id="massivbau">Massivbau</h4>
