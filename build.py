@@ -7,9 +7,9 @@ base=open('src/base.html').read()
 FIG='<figure class="heromodel"><img src="images/modell-ueberdachung.jpg" alt="3D-Modell einer Stahlüberdachung" decoding="async"><figcaption>3D-Modell · Stahlüberdachung</figcaption></figure>'
 V='b'
 K='<div class="fact"><b>Ingenieurkammer-Bau NRW</b><span>Mitglied, bundesweit einreichberechtigt</span></div>'
-Y='<div class="fact"><b>Persönliche Betreuung</b><span>Verlässlich und mit festem Ansprechpartner</span></div>'
+Y='<div class="fact"><b>Persönlich betreut</b><span>Verlässlich, fester Kontakt</span></div>'
 A24='<div class="fact"><b>Antwort in 24 Stunden</b><span>in der Regel auf jede Anfrage</span></div>'
-X={'1':'<div class="fact"><b>Statik aus einer Hand</b><span>von der Berechnung bis zur Bestätigung der Ausführung</span></div>','2':'<div class="fact"><b>Neubau und Bestand</b><span>Neubauten, Umbauten und Erweiterungen</span></div>'}
+X={'1':'<div class="fact"><b>Statik aus einer Hand</b><span>von der Berechnung bis zur Bestätigung der Ausführung</span></div>','2':'<div class="fact"><b>Neubau und Bestand</b><span>Neu-, Um- und Anbauten</span></div>'}
 def facts(x='2'): return '    '+K+'\n    '+Y+'\n    '+X[x]+'\n    '+A24
 def make(theme,color,noindex,v=None,x='2'):
     v=v or V
