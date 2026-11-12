@@ -219,8 +219,9 @@ section{padding:96px 0}
 /* Feste Anfrage-Leiste am Handy */
 .stickycta{display:none}
 @media (max-width:760px){
- .stickycta{display:block;position:fixed;left:0;right:0;bottom:0;z-index:50;padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:rgba(15,20,26,.94);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:1px solid rgba(255,255,255,.12);transform:translateY(110%);transition:transform .3s ease}
+ .stickycta{display:block;position:fixed;left:0;right:0;bottom:0;z-index:50;padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:rgba(15,20,26,.94);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:0;text-decoration:none;transform:translateY(110%);transition:transform .3s ease}
  .stickycta.show{transform:none}
+ .stickycta,.stickycta:hover,.stickycta .btn{text-decoration:none}
  .stickycta .btn{display:block;text-align:center;width:100%;box-sizing:border-box}
  footer{padding-bottom:96px}
 }
@@ -507,9 +508,9 @@ pick(0);
   targets.forEach(function(el,i){el.classList.add('rv');var p=el.parentElement;if(p&&(p.classList.contains('projects')||p.classList.contains('sgrid')||p.classList.contains('plans'))){el.style.setProperty('--d',(Array.prototype.indexOf.call(p.children,el)%3)*0.08+'s')}});
   if(!('IntersectionObserver' in window)){document.querySelectorAll('.rv').forEach(function(e){e.classList.add('in')});}
   else{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.08});document.querySelectorAll('.rv').forEach(function(e){io.observe(e)});}
-  var st=document.getElementById('sticky'),an=document.getElementById('anfrage'),vis=false;
-  if(st&&an&&'IntersectionObserver' in window){new IntersectionObserver(function(es){vis=es[0].isIntersecting;upd()},{threshold:0}).observe(an)}
-  function upd(){st.classList.toggle('show',window.scrollY>480&&!vis)}
+  var st=document.getElementById('sticky'),an=document.getElementById('anfrage'),ft=document.querySelector('footer'),vis=false,fv=false;
+  if(st&&an&&'IntersectionObserver' in window){new IntersectionObserver(function(es){vis=es[0].isIntersecting;upd()},{threshold:0}).observe(an);if(ft)new IntersectionObserver(function(es){fv=es[0].isIntersecting;upd()},{threshold:0}).observe(ft)}
+  function upd(){st.classList.toggle('show',window.scrollY>480&&!vis&&!fv)}
   window.addEventListener('scroll',upd,{passive:true});upd();
 })();
 </script>
