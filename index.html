@@ -117,6 +117,26 @@ form.f{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 #st{font-size:.92rem;color:var(--mute);margin:0}
 #st a{color:var(--accent);font-weight:700}
 @media (max-width:640px){form.f{grid-template-columns:1fr}}
+.lz{text-align:center}
+.lz .sub{margin:0 auto 52px}
+.chain{display:flex;max-width:1000px;margin:0 auto}
+.chain>div{flex:1 1 0;min-width:0;position:relative;border-top:2px solid var(--accent);padding:26px 16px 0}
+.chain>div::before,.chain>div:last-child::after{content:"";position:absolute;top:-1px;width:18px;border-top:2.5px solid var(--accent);transform:translate(-50%,0) rotate(-45deg)}
+.chain>div::before{left:0}
+.chain>div:last-child::after{right:0;transform:translate(50%,0) rotate(-45deg)}
+.chain b{display:block;font-size:1.05rem;line-height:1.35}
+.chain a{display:block;text-decoration:none;color:inherit;padding:6px 8px;margin:-6px -8px;border-radius:3px;transition:color .2s,background .2s}
+.chain a small{display:block;margin-top:6px;font:400 .76rem ui-monospace,Menlo,Consolas,monospace;color:var(--mute);transition:color .2s}
+.chain a:hover,.chain a:focus-visible{color:var(--accent);background:rgba(255,122,46,.08)}
+.chain a:hover small,.chain a:focus-visible small{color:var(--accent)}
+.chain a small::after{content:" \2193"}
+.chips{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:48px}
+.chip{border:1px solid var(--accent);background:var(--surf);padding:9px 16px;font-size:.95rem}
+@media (max-width:760px){.chain{flex-direction:column;border-left:2px solid var(--accent);margin-left:12px;max-width:none;text-align:left}
+.chain>div{border-top:0;padding:14px 0 14px 22px}
+.chain>div::before{left:-1px;top:50%;transform:translate(-50%,-50%) rotate(-45deg)}
+.chain>div:last-child::after{display:none}}
+@media (prefers-reduced-motion:reduce){.chain a,.chain a small{transition:none}}
 .imp{padding:64px 0;border-top:1px solid var(--line)}
 .impg{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:40px;margin-top:24px}
 .impg p{margin:0 0 16px}
@@ -160,24 +180,19 @@ nav a.cta{padding:8px 14px;margin-left:auto}
 </div>
 
 <section id="leistungen">
-  <div class="wrap">
+  <div class="wrap lz">
     <span class="kicker">Leistungen</span>
     <h2>Tragwerksplanung</h2>
-    <p class="sub">Sichere Tragwerke planen, von der Genehmigungsstatik bis zur Ausführungsplanung.</p>
-    <div class="grid2" style="grid-template-columns:minmax(0,760px)">
-      <article class="card">
-        <h3>TRAGWERKSPLANUNG</h3>
-        <p class="lead">Neubauten, Umbauten, Erweiterungen und Sanierungen von Wohn- und Geschäftshäusern, Industriebauten, Carports, Garagen u. a.</p>
-        <h4>Leistungen</h4>
-        <ul class="chk">
-          <li>Qualifizierter Tragwerksplaner nach Landesbauordnung</li>
-          <li>Statische Berechnungen</li>
-          <li>Positionspläne</li>
-          <li>Schal- und Bewehrungspläne</li>
-          <li>Stellungnahmen und Bewertungen</li>
-          <li>Bestätigungen der fachgerechten Ausführung gemäß Plan</li>
-        </ul>
-      </article>
+    <p class="sub">Neubauten, Umbauten, Erweiterungen und Sanierungen von Wohn- und Geschäftshäusern, Industriebauten, Carports, Garagen und mehr.</p>
+    <div class="chain">
+      <div><b>Statische Berechnungen</b></div>
+      <div><a href="#stahlbau"><b>Positionspläne</b><small>Beispiel ansehen</small></a></div>
+      <div><a href="#massivbau"><b>Schal- und Bewehrungspläne</b><small>Beispiel ansehen</small></a></div>
+      <div><b>Bestätigung der Ausführung gemäß Plan</b></div>
+    </div>
+    <div class="chips">
+      <span class="chip">Qualifizierter Tragwerksplaner nach Landesbauordnung</span>
+      <span class="chip">Stellungnahmen und Bewertungen</span>
     </div>
   </div>
 </section>
@@ -196,12 +211,12 @@ nav a.cta{padding:8px 14px;margin-left:auto}
       <span class="kicker">Planbeispiele</span>
       <h3>Musterpläne</h3>
       <p class="sub">Auszug aus der Ausführungsplanung.</p>
-      <h4 class="grp">Massivbau</h4>
+      <h4 class="grp" id="massivbau">Massivbau</h4>
       <div class="plans two">
       <article class="proj"><div class="ph plan has" role="button" tabindex="0" aria-label="Bewehrungsplan vergrößern" data-zoom data-vector="plans/bewehrungsplan-muster.svg" data-pdf="plans/bewehrungsplan-muster.pdf"><img id="planimg" src="images/muster-bewehrungsplan-decke-uber-erdgeschoss-und-s.jpg?v=2" alt="Muster Bewehrungsplan Decke über Erdgeschoss" width="4200" height="2971"><span class="zh">Vergrößern</span></div><div class="body"><h3>Muster Bewehrungsplan</h3><p class="type">Bewehrung Decke über Erdgeschoss</p></div></article>
       <article class="proj"><div class="ph plan has" role="button" tabindex="0" aria-label="Schalplan vergrößern" data-zoom data-vector="plans/schalplan-muster.svg" data-pdf="plans/schalplan-muster.pdf"><img src="images/muster-schalplan-decke-uber-erdgeschoss.jpg?v=2" alt="Muster Schalplan Decke über Erdgeschoss" width="4200" height="2971"><span class="zh">Vergrößern</span></div><div class="body"><h3>Muster Schalplan</h3><p class="type">Schalplan Decke über Erdgeschoss</p></div></article>
       </div>
-      <h4 class="grp" style="margin-top:44px">Stahlbau</h4>
+      <h4 class="grp" id="stahlbau" style="margin-top:44px">Stahlbau</h4>
       <div class="plans two">
       <article class="proj"><div class="ph plan has" role="button" tabindex="0" aria-label="Positionsplan vergrößern" data-zoom><img src="images/positionsplan-stahlbau.jpg" alt="Muster Positionsplan Stahlbau" width="6084" height="3136" loading="lazy"><span class="zh">Vergrößern</span></div><div class="body"><h3>Muster Positionsplan</h3><p class="type">Stahlträger und Stützen mit Positionen</p></div></article>
       <article class="proj"><div class="ph plan has" role="button" tabindex="0" aria-label="Leitdetails vergrößern" data-zoom data-vector="plans/leitdetails-muster.svg" data-pdf="plans/leitdetails-muster.pdf"><img src="images/muster-leitdetails.jpg" alt="Muster Leitdetails Stahlbauanschlüsse" width="3000" height="2871"><span class="zh">Vergrößern</span></div><div class="body"><h3>Muster Leitdetails</h3><p class="type">Stahlbauanschlüsse und Stützenfuß</p></div></article>
