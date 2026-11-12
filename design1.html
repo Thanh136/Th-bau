@@ -224,6 +224,12 @@ section{padding:96px 0}
  .stickycta .btn{display:block;text-align:center;width:100%;box-sizing:border-box}
  footer{padding-bottom:96px}
 }
+/* Hover: Symbole in der Massekette */
+.chain .ico{transition:transform .28s cubic-bezier(.2,.8,.2,1),box-shadow .28s ease}
+.chain .ico svg{transition:transform .28s cubic-bezier(.2,.8,.2,1)}
+.chain .stb:focus-visible .ico,.chain .stb[aria-pressed="true"] .ico{box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 26%,transparent)}
+@media (hover:hover){.chain .stb:hover .ico,.chain .stb:focus-visible .ico{transform:translateY(-7px);box-shadow:0 0 0 6px color-mix(in srgb,var(--accent) 28%,transparent),0 14px 22px rgba(0,0,0,.35)}.chain .stb:hover .ico svg,.chain .stb:focus-visible .ico svg{transform:scale(1.12) rotate(-6deg)}}
+@media (prefers-reduced-motion:reduce){.chain .ico,.chain .ico svg{transition:none}.chain .stb:hover .ico,.chain .stb:hover .ico svg{transform:none}}
 </style>
 </head>
 <body>
