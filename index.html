@@ -132,7 +132,7 @@ form.f{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .chain a small::after{content:" \2193"}
 .chips{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:48px}
 .chip{border:1px solid var(--accent);background:var(--surf);padding:9px 16px;font-size:.95rem}
-@media (max-width:900px){.chain{flex-direction:column;border-left:2px solid var(--accent);margin-left:12px;max-width:none;text-align:left}
+@media (max-width:900px){.chips{display:grid;grid-auto-rows:1fr;grid-template-columns:1fr;max-width:520px;margin-left:auto;margin-right:auto}.chip{display:flex;align-items:center;justify-content:center;text-align:center}.chain{flex-direction:column;border-left:2px solid var(--accent);margin-left:12px;max-width:none;text-align:left}
 .chain>div{border-top:0;padding:14px 0 14px 22px}
 .chain>div::before{left:-1px;top:50%;transform:translate(-50%,-50%) rotate(-45deg)}
 .chain>div:last-child::after{display:none}}
