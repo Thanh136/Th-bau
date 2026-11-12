@@ -125,14 +125,17 @@ form.f{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .chain>div::before{left:0}
 .chain>div:last-child::after{right:0;transform:translate(50%,0) rotate(-45deg)}
 .chain b{display:block;font-size:1rem;line-height:1.35;hyphens:manual}
-.chain a{display:block;text-decoration:none;color:inherit;padding:6px 8px;margin:-6px -8px;border-radius:3px;transition:color .2s,background .2s}
-.chain a small{display:block;margin-top:6px;font:400 .76rem ui-monospace,Menlo,Consolas,monospace;color:var(--mute);transition:color .2s}
-.chain a:hover,.chain a:focus-visible{color:var(--accent);background:rgba(255,122,46,.08)}
-.chain a:hover small,.chain a:focus-visible small{color:var(--accent)}
-.chain a small::after{content:" \2193"}
+.chain .stb{display:block;width:100%;background:none;border:0;font:inherit;color:inherit;text-align:center;cursor:pointer;padding:6px 8px;margin:-6px -8px;border-radius:3px;transition:color .2s,background .2s}
+.chain .stb:hover,.chain .stb:focus-visible,.chain .stb[aria-pressed="true"]{color:var(--accent);background:rgba(255,122,46,.09)}
+.chain .desc{display:none}
+.chainpanel{max-width:720px;min-height:11.5rem;margin:40px auto 0;padding:24px 28px;background:var(--surf);border:1px solid var(--line);border-top:3px solid var(--accent);text-align:left}
+.chainpanel h3,.chain .desc h3{margin:0 0 8px;font-size:1.15rem}
+.chainpanel p,.chain .desc p{margin:0;color:var(--mute)}
+.ex{display:inline-block;margin-top:12px;color:var(--accent);font-weight:600;text-decoration:none}
+.ex:hover{text-decoration:underline}
 .chips{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:1fr;gap:10px;max-width:780px;margin:48px auto 0}
 .chip{display:flex;align-items:center;justify-content:center;text-align:center;border:1px solid var(--accent);background:var(--surf);padding:12px 16px;font-size:.95rem}
-@media (max-width:900px){.chips{grid-template-columns:1fr;max-width:520px}.chain{flex-direction:column;border-left:2px solid var(--accent);margin-left:12px;max-width:none;text-align:left}
+@media (max-width:900px){.chips{grid-template-columns:1fr;max-width:520px}.chainpanel{display:none}.chain .st[data-open] .desc{display:block;padding:10px 0 0}.chain .stb{text-align:left}.chain .desc h3{display:none}.chain{flex-direction:column;border-left:2px solid var(--accent);margin-left:12px;max-width:none;text-align:left}
 .chain>div{border-top:0;padding:14px 0 14px 22px}
 .chain>div::before{left:-1px;top:50%;transform:translate(-50%,-50%) rotate(-45deg)}
 .chain>div:last-child::after{display:none}}
@@ -184,14 +187,15 @@ nav a.cta{padding:8px 14px;margin-left:auto}
     <span class="kicker">Leistungen</span>
     <h2>Tragwerksplanung</h2>
     <p class="sub">Neubauten, Umbauten, Erweiterungen und Sanierungen von Wohn- und Geschäftshäusern, Industriebauten, Carports, Garagen und mehr.</p>
-    <div class="chain">
-      <div><b>Erstkontakt und Grundlagen&shy;ermittlung</b></div>
-      <div><b>Statische Berechnungen</b></div>
-      <div><a href="#stahlbau"><b>Positionspläne</b><small>Beispiel ansehen</small></a></div>
-      <div><a href="#massivbau"><b>Schal- und Bewehrungspläne</b><small>Beispiel ansehen</small></a></div>
-      <div><b>Stichproben&shy;hafte Kontrollen</b></div>
-      <div><b>Bestätigung der Ausführung</b></div>
+    <div class="chain" id="chain">
+      <div class="st"><button type="button" class="stb" aria-pressed="false"><b>Erstkontakt und Grundlagen&shy;ermittlung</b></button><div class="desc"><h3>Erstkontakt und Grundlagenermittlung</h3><p>Im ersten Gespräch klären wir Ihr Vorhaben, den Zeitrahmen und den gewünschten Leistungsumfang. Dazu sichte ich die vorhandenen Unterlagen, zum Beispiel Entwurfspläne, Baugrundgutachten und Vorgaben des Bauamts. Daraus entstehen ein passendes Angebot und das Konzept für das Tragwerk.</p></div></div>
+      <div class="st"><button type="button" class="stb" aria-pressed="false"><b>Statische Berechnungen</b></button><div class="desc"><h3>Statische Berechnungen</h3><p>Auf Grundlage der Entwurfspläne ermittle ich die Lasten und lege das Tragsystem fest. Alle tragenden Bauteile werden nach den geltenden Normen bemessen und nachgewiesen. Das Ergebnis ist die prüffähige Statik für die Baugenehmigung.</p></div></div>
+      <div class="st"><button type="button" class="stb" aria-pressed="false"><b>Positionspläne</b></button><div class="desc"><h3>Positionspläne</h3><p>Im Positionsplan erhält jedes tragende Bauteil eine eigene Positionsnummer. Die Pläne zeigen Lage, Abmessungen und Werkstoff von Stützen, Trägern und Decken. Sie verbinden die Statik mit der Ausführung und sind die Basis für die weiteren Pläne.</p><a class="ex" href="#stahlbau">Beispiel ansehen ↓</a></div></div>
+      <div class="st"><button type="button" class="stb" aria-pressed="false"><b>Schal- und Bewehrungspläne</b></button><div class="desc"><h3>Schal- und Bewehrungspläne</h3><p>Schalpläne legen die Geometrie der Betonbauteile fest, also Maße, Aussparungen und Durchbrüche. Bewehrungspläne zeigen Lage, Durchmesser und Menge des Stahls in jedem Bauteil. Damit kann die Baustelle den Rohbau eindeutig und zügig ausführen.</p><a class="ex" href="#massivbau">Beispiel ansehen ↓</a></div></div>
+      <div class="st"><button type="button" class="stb" aria-pressed="false"><b>Stichproben&shy;hafte Kontrollen</b></button><div class="desc"><h3>Stichprobenhafte Kontrollen</h3><p>Während der Ausführung prüfe ich stichprobenhaft, ob Bauteile und Bewehrung den Plänen entsprechen. Abweichungen werden dokumentiert und mit den Beteiligten geklärt. So bleibt die Qualität nachvollziehbar, ohne dass eine ständige Präsenz auf der Baustelle nötig ist.</p></div></div>
+      <div class="st"><button type="button" class="stb" aria-pressed="false"><b>Bestätigung der Ausführung</b></button><div class="desc"><h3>Bestätigung der Ausführung</h3><p>Nach den Kontrollen bestätige ich, dass das Tragwerk gemäß den Plänen ausgeführt wurde. Die Bestätigung stellt der qualifizierte Tragwerksplaner für das Bauamt aus. Damit ist die Tragwerksplanung für das Bauvorhaben abgeschlossen.</p></div></div>
     </div>
+    <div class="chainpanel" id="cp" aria-live="polite"></div>
     <div class="chips">
       <span class="chip">Qualifizierter Tragwerksplaner nach Landesbauordnung</span>
       <span class="chip">Stellungnahmen und Bewertungen</span>
@@ -377,6 +381,17 @@ document.getElementById("af").addEventListener("submit",function(e){
  .catch(function(){st.innerHTML="Das Senden hat leider nicht geklappt. <a href=\""+fallback+"\">Bitte per E-Mail senden</a> oder direkt an "+MAIL+".";})
  .then(function(){clearTimeout(tm);btn.disabled=false});
 });
+</script>
+
+<script>
+(function(){
+var st=[].slice.call(document.querySelectorAll("#chain .st")),cp=document.getElementById("cp");
+function pick(i){st.forEach(function(e,k){var on=k===i;e.querySelector(".stb").setAttribute("aria-pressed",on?"true":"false");if(on){e.setAttribute("data-open","")}else{e.removeAttribute("data-open")}});
+ cp.innerHTML=st[i].querySelector(".desc").innerHTML}
+st.forEach(function(e,i){var b=e.querySelector(".stb");b.addEventListener("click",function(){pick(i)});
+ b.addEventListener("mouseenter",function(){if(window.matchMedia("(hover:hover) and (min-width:901px)").matches)pick(i)})});
+pick(0);
+})();
 </script>
 </body>
 </html>
