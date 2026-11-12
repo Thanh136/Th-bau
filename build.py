@@ -21,7 +21,7 @@ if len(sys.argv)>1 and sys.argv[1]=='test':
     import os;os.makedirs('../th-bau-test/var',exist_ok=True)
     for x in '12': open(f'../th-bau-test/var/test-b{x}.html','w').write(make(2,'#131a20',True,'b',x))
     print('test ok');sys.exit()
-open('index.html','w').write(make(2,'#131a20',False))
+open('index.html','w').write(make(1,'#1b2026',False))
 open('design1.html','w').write(make(1,'#1b2026',True))
 open('design2.html','w').write(make(2,'#131a20',True))
 print('ok')
