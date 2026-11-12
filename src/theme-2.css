@@ -1,0 +1,8 @@
+
+/* TEST: Farbwelt Nebelwald (Schiefer, Moosgruen) */
+:root,:root:not([data-theme="light"]),:root[data-theme="dark"]{--bg:#1a232a;--surf:#222e36;--ink:#e6eae8;--mute:#9aa8a8;--line:#35444d;--dark:#131a20;--accent:#a8bea6;--accent-ink:#16201b;--grid:rgba(255,255,255,.05);color-scheme:dark}
+.hero{background:linear-gradient(165deg,#2b3d38 0%,#18222a 72%)}
+.dark{background:#2a363e}
+.sonst{background:#202b33}
+.chain .ico svg{stroke:#16201b}
+.chain .stb:hover,.chain .stb:focus-visible,.chain .stb[aria-pressed="true"]{background:rgba(168,190,166,.1)}
