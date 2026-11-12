@@ -174,6 +174,56 @@ nav a{padding:8px 6px;font-size:.8rem;white-space:nowrap}
 nav a.cta{padding:8px 14px;margin-left:auto}
 }
 
+/* ---- Modern: Fakten, Bewegung, Hover, mobile Leiste ---- */
+section{padding:96px 0}
+.facts{position:relative;z-index:2;background:var(--dark);border-top:1px solid rgba(255,255,255,.1)}
+.facts .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.fact{padding:24px 22px;border-left:1px solid rgba(255,255,255,.14);color:#cfd4d9;min-width:0}
+.fact:first-child{border-left:0;padding-left:0}
+.fact b{display:block;color:#fff;font-size:1.05rem;line-height:1.3;margin-bottom:4px}
+.fact span{display:block;font-size:.88rem;line-height:1.45}
+.fact i{font-style:normal;color:var(--accent)}
+@media (max-width:900px){.facts .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}.fact:nth-child(3){border-left:0;padding-left:0}.fact:nth-child(n+3){border-top:1px solid rgba(255,255,255,.14)}.fact:nth-child(odd){padding-left:0}}
+@media (max-width:480px){.fact{padding:16px 14px}.fact b{font-size:.95rem}.fact span{font-size:.8rem}.facts[data-v="b"] .wrap{padding:0 8px}}
+/* Variante A: Modellkarte */
+.heromodel{display:none}
+.hero[data-v="a"] .heroart{top:44%;width:min(58%,640px);right:calc(max(0px,(100% - 1120px)/2) - 60px);opacity:.3}
+.hero[data-v="a"] .heromodel{display:block;position:absolute;z-index:1;right:calc(max(0px,(100% - 1120px)/2) + 24px);top:50%;transform:translateY(-50%) rotate(2deg);width:min(34%,380px);margin:0;background:#fff;padding:14px 14px 10px;border-radius:4px;box-shadow:0 28px 60px rgba(0,0,0,.5)}
+.heromodel img{display:block;width:100%;aspect-ratio:4/3;object-fit:contain}
+.heromodel figcaption{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:#4c5660;margin-top:8px;font-weight:600}
+@media (max-width:900px){.hero[data-v="a"] .heromodel{display:none}.hero[data-v="a"] .heroart{width:88%;right:-14%;opacity:.14}}
+/* Variante B: Konstruktionsraster */
+.hero[data-v="b"]::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);background-size:48px 48px;-webkit-mask-image:linear-gradient(90deg,transparent 10%,#000 70%);mask-image:linear-gradient(90deg,transparent 10%,#000 70%);pointer-events:none}
+.hero[data-v="b"] .heroart{width:min(46%,520px);top:43%;opacity:.6}
+.hero[data-v="b"] .wrap{padding-bottom:150px}
+.facts[data-v="b"]{background:none;border:0;margin-top:-72px}
+.facts[data-v="b"] .wrap{background:var(--surf);border:1px solid var(--line);border-radius:8px;box-shadow:0 22px 50px rgba(0,0,0,.35);padding:0 22px;width:calc(100% - 48px);max-width:1072px}
+.facts[data-v="b"] .fact{color:var(--mute)}
+.facts[data-v="b"] .fact b{color:var(--ink)}
+.facts[data-v="b"] .fact{border-color:var(--line)}
+@media (max-width:900px){.hero[data-v="b"] .heroart{width:88%;right:-14%;opacity:.2}.hero[data-v="b"] .wrap{padding-bottom:120px}}
+/* Bewegung */
+.js .rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease;transition-delay:var(--d,0s)}
+.js .rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js .rv{opacity:1;transform:none;transition:none}}
+/* Hover */
+.proj,.scard{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.proj:hover,.scard:hover{transform:translateY(-4px);box-shadow:0 18px 36px rgba(0,0,0,.28);border-color:var(--accent)}
+@media (prefers-reduced-motion:reduce){.proj:hover,.scard:hover{transform:none}}
+.js .proj.rv.in:hover,.js .scard.rv.in:hover{transform:translateY(-4px)}
+.js .proj.rv.in,.js .scard.rv.in{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+/* Antwortzeit */
+.react{margin:14px 0 0;font-size:.95rem;color:var(--mute)}
+.react b{color:var(--accent)}
+/* Feste Anfrage-Leiste am Handy */
+.stickycta{display:none}
+@media (max-width:760px){
+ .stickycta{display:block;position:fixed;left:0;right:0;bottom:0;z-index:50;padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:rgba(15,20,26,.94);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border-top:1px solid rgba(255,255,255,.12);transform:translateY(110%);transition:transform .3s ease}
+ .stickycta.show{transform:none}
+ .stickycta .btn{display:block;text-align:center;width:100%;box-sizing:border-box}
+ footer{padding-bottom:96px}
+}
+
 /* TEST: Farbwelt Nebelwald (Schiefer, Moosgruen) */
 :root,:root:not([data-theme="light"]),:root[data-theme="dark"]{--bg:#1a232a;--surf:#222e36;--ink:#e6eae8;--mute:#9aa8a8;--line:#35444d;--dark:#131a20;--accent:#a8bea6;--accent-ink:#16201b;--grid:rgba(255,255,255,.05);color-scheme:dark}
 .hero{background:linear-gradient(165deg,#2b3d38 0%,#18222a 72%)}
@@ -198,12 +248,22 @@ nav a.cta{padding:8px 14px;margin-left:auto}
 </header>
 
 <main id="start">
-<div class="hero">
+<div class="hero" data-v="b">
 <svg class="heroart" viewBox="0 0 560 400" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><g opacity=".5"><path d="M332.5 67.6L403.9 67.6L403.9 74.4L370.6 74.4L370.6 128.1L403.9 128.1L403.9 134.8L332.5 134.8L332.5 128.1L365.9 128.1L365.9 74.4L332.5 74.4Z"/><path stroke-width="2" d="M35.0 150.0L332.5 67.6"/><path stroke-width="2" d="M205.0 150.0L403.9 67.6"/><path stroke-width="2" d="M205.0 166.0L403.9 74.4"/><path stroke-width="2" d="M125.5 166.0L370.6 74.4"/><path stroke-width="2" d="M125.5 294.0L370.6 128.1"/><path stroke-width="2" d="M205.0 294.0L403.9 128.1"/><path stroke-width="2" d="M205.0 310.0L403.9 134.8"/><path stroke-width="2" d="M35.0 310.0L332.5 134.8"/><path stroke-width="2" d="M35.0 294.0L332.5 128.1"/><path stroke-width="2" d="M114.5 294.0L365.9 128.1"/><path stroke-width="2" d="M114.5 166.0L365.9 74.4"/><path stroke-width="2" d="M35.0 166.0L332.5 74.4"/></g><path d="M35.0 150.0L205.0 150.0L205.0 166.0L125.5 166.0L125.5 294.0L205.0 294.0L205.0 310.0L35.0 310.0L35.0 294.0L114.5 294.0L114.5 166.0L35.0 166.0Z"/><path d="M261.6 381.5L376.2 232.1M238.4 362.5L362.2 220.7"/><circle cx="250" cy="372" r="15"/><circle cx="250" cy="372" r="9.3" stroke-width="2" opacity=".7"/><path stroke-width="2.2" d="M273.1 366.6Q266.9 351.3 250.8 348.3"/><path stroke-width="2.2" d="M284.5 351.6Q278.6 337.0 263.2 334.1"/><path stroke-width="2.2" d="M296.0 336.7Q290.4 322.7 275.5 320.0"/><path stroke-width="2.2" d="M307.4 321.7Q302.1 308.4 287.9 305.8"/><path stroke-width="2.2" d="M318.9 306.8Q313.8 294.1 300.3 291.6"/><path stroke-width="2.2" d="M330.3 291.9Q325.5 279.8 312.7 277.4"/><path stroke-width="2.2" d="M341.8 276.9Q337.2 265.5 325.1 263.2"/><path stroke-width="2.2" d="M353.3 262.0Q348.9 251.2 337.5 249.1"/><path stroke-width="2.2" d="M364.7 247.0Q360.6 236.9 349.9 234.9"/><path d="M317.3 368.5L409.6 224.3M292.7 351.5L394.8 214.1"/><circle cx="305" cy="360" r="15"/><circle cx="305" cy="360" r="9.3" stroke-width="2" opacity=".7"/><path stroke-width="2.2" d="M326.6 354.1Q319.2 339.4 302.9 337.7"/><path stroke-width="2.2" d="M335.8 339.7Q328.8 325.6 313.1 324.0"/><path stroke-width="2.2" d="M345.0 325.3Q338.3 311.8 323.3 310.3"/><path stroke-width="2.2" d="M354.2 310.8Q347.8 298.0 333.5 296.5"/><path stroke-width="2.2" d="M363.5 296.4Q357.3 284.2 343.7 282.8"/><path stroke-width="2.2" d="M372.7 282.0Q366.9 270.4 353.9 269.0"/><path stroke-width="2.2" d="M381.9 267.6Q376.4 256.6 364.2 255.3"/><path stroke-width="2.2" d="M391.2 253.2Q385.9 242.7 374.4 241.6"/><path stroke-width="2.2" d="M400.4 238.7Q395.5 228.9 384.6 227.8"/><path d="M373.1 355.3L443.1 216.4M346.9 340.7L427.3 207.6"/><circle cx="360" cy="348" r="15"/><circle cx="360" cy="348" r="9.3" stroke-width="2" opacity=".7"/><path stroke-width="2.2" d="M380.1 341.4Q371.4 327.5 354.9 327.4"/><path stroke-width="2.2" d="M387.1 327.5Q378.7 314.2 363.0 314.1"/><path stroke-width="2.2" d="M394.1 313.6Q386.1 300.8 371.0 300.8"/><path stroke-width="2.2" d="M401.1 299.7Q393.4 287.5 379.1 287.5"/><path stroke-width="2.2" d="M408.1 285.8Q400.8 274.2 387.1 274.2"/><path stroke-width="2.2" d="M415.1 271.9Q408.2 260.9 395.1 260.9"/><path stroke-width="2.2" d="M422.1 258.0Q415.5 247.6 403.2 247.6"/><path stroke-width="2.2" d="M429.1 244.1Q422.9 234.3 411.2 234.3"/><path stroke-width="2.2" d="M436.1 230.2Q430.2 221.0 419.3 221.0"/></g></svg>
+
   <div class="wrap">
     <span class="tag">Ingenieurbüro · Düsseldorf</span>
     <h1>TH-BAU</h1>
     <p>Büro für Tragwerksplanung und sonstige Ingenieurleistungen.</p>
+  </div>
+</div>
+
+<div class="facts rv" data-v="b">
+  <div class="wrap">
+        <div class="fact"><b>Ingenieurkammer-Bau NRW</b><span>Mitglied, bundesweit einreichberechtigt</span></div>
+    <div class="fact"><b>15 Jahre</b><span>Berufserfahrung in der Tragwerksplanung</span></div>
+    <div class="fact"><b>Neubau und Bestand</b><span>Neubauten, Umbauten und Erweiterungen</span></div>
+    <div class="fact"><b>Antwort in 24 Stunden</b><span>in der Regel auf jede Anfrage</span></div>
   </div>
 </div>
 
@@ -288,6 +348,7 @@ nav a.cta{padding:8px 14px;margin-left:auto}
       <h2>Projekt anfragen</h2>
       <p class="sub">Sie können mich direkt unter <a href="tel:+491639654179" style="color:var(--accent);font-weight:700;white-space:nowrap">0163 9654179</a> kontaktieren oder bequem eine Anfrage hinterlassen. Schildern Sie kurz Ihr Vorhaben, ich melde mich zeitnah bei Ihnen.</p>
       <ul class="chk"><li>Statik und Tragwerksplanung</li><li>Sonstige Leistungen, z. B. Bauüberwachung</li></ul>
+      <p class="react"><b>Antwort in der Regel innerhalb von 24 Stunden.</b> Kostenlos und unverbindlich.</p>
     </div>
     <form class="f" id="af" >
       <input id="hp" name="hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
@@ -437,6 +498,20 @@ function pick(i){st.forEach(function(e,k){var on=k===i;e.querySelector(".stb").s
 st.forEach(function(e,i){var b=e.querySelector(".stb");b.addEventListener("click",function(){pick(i)});
  b.addEventListener("mouseenter",function(){if(window.matchMedia("(hover:hover) and (min-width:901px)").matches)pick(i)})});
 pick(0);
+})();
+</script>
+<a class="stickycta" id="sticky" href="#anfrage"><span class="btn">Anfrage senden</span></a>
+<script>
+(function(){
+  var d=document.documentElement;d.classList.add('js');
+  var targets=document.querySelectorAll('section .kicker,section h2,section .sub,.proj,.scard,.plans>article,.chips,.chain,.facts,.grp,.plans-wrap h3');
+  targets.forEach(function(el,i){el.classList.add('rv');var p=el.parentElement;if(p&&(p.classList.contains('projects')||p.classList.contains('sgrid')||p.classList.contains('plans'))){el.style.setProperty('--d',(Array.prototype.indexOf.call(p.children,el)%3)*0.08+'s')}});
+  if(!('IntersectionObserver' in window)){document.querySelectorAll('.rv').forEach(function(e){e.classList.add('in')});}
+  else{var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px',threshold:.08});document.querySelectorAll('.rv').forEach(function(e){io.observe(e)});}
+  var st=document.getElementById('sticky'),an=document.getElementById('anfrage'),vis=false;
+  if(st&&an&&'IntersectionObserver' in window){new IntersectionObserver(function(es){vis=es[0].isIntersecting;upd()},{threshold:0}).observe(an)}
+  function upd(){st.classList.toggle('show',window.scrollY>480&&!vis)}
+  window.addEventListener('scroll',upd,{passive:true});upd();
 })();
 </script>
 </body>
