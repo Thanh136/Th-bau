@@ -221,11 +221,14 @@ section{padding:96px 0}
 .react{margin:14px 0 0;font-size:.95rem;color:var(--mute)}
 .react b{color:var(--accent)}
 /* Hinweis: erster Schritt pulsiert am Handy */
-@keyframes hintpulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 60%,transparent);transform:scale(1)}60%{box-shadow:0 0 0 14px color-mix(in srgb,var(--accent) 0%,transparent);transform:scale(1.08)}100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 0%,transparent);transform:scale(1)}}
-.chain .st.hint .ico{animation:hintpulse 1.8s ease-out infinite}
+@keyframes hintring{0%{transform:scale(1);opacity:.9}100%{transform:scale(1.9);opacity:0}}
+@keyframes hintbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+@keyframes hintfade{0%,100%{opacity:1}50%{opacity:.55}}
+.chain .st.hint .ico{position:relative;animation:hintbeat 1.6s ease-in-out infinite}
+.chain .st.hint .ico::after{content:"";position:absolute;left:0;top:0;right:0;bottom:0;border-radius:50%;border:3px solid var(--accent);pointer-events:none;animation:hintring 1.6s ease-out infinite}
 .chain .st.hint .stb::after{content:"antippen";margin-left:auto;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:600}
-@media (min-width:901px){.chain .st.hint .ico{animation:none}.chain .st.hint .stb::after{content:none}}
-@media (prefers-reduced-motion:reduce){.chain .st.hint .ico{animation:none;box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 30%,transparent)}}
+@media (min-width:901px){.chain .st.hint .ico{animation:none}.chain .st.hint .ico::after{content:none}.chain .st.hint .stb::after{content:none}}
+@media (prefers-reduced-motion:reduce){.chain .st.hint .ico{animation:hintfade 1.6s ease-in-out infinite}.chain .st.hint .ico::after{animation:none;opacity:.5}}
 /*THEME*/</style>
 </head>
 <body>
