@@ -221,6 +221,12 @@ section{padding:96px 0}
 /* Antwortzeit */
 .react{margin:14px 0 0;font-size:.95rem;color:var(--mute)}
 .react b{color:var(--accent)}
+/* Hinweis: erster Schritt pulsiert am Handy */
+@keyframes hintpulse{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 60%,transparent);transform:scale(1)}60%{box-shadow:0 0 0 14px color-mix(in srgb,var(--accent) 0%,transparent);transform:scale(1.08)}100%{box-shadow:0 0 0 0 color-mix(in srgb,var(--accent) 0%,transparent);transform:scale(1)}}
+.chain .st.hint .ico{animation:hintpulse 1.8s ease-out infinite}
+.chain .st.hint .stb::after{content:"antippen";margin-left:auto;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);font-weight:600}
+@media (min-width:901px){.chain .st.hint .ico{animation:none}.chain .st.hint .stb::after{content:none}}
+@media (prefers-reduced-motion:reduce){.chain .st.hint .ico{animation:none;box-shadow:0 0 0 5px color-mix(in srgb,var(--accent) 30%,transparent)}}
 
 /* TEST: Farbwelt Nebelwald (Schiefer, Moosgruen) */
 :root,:root:not([data-theme="light"]),:root[data-theme="dark"]{--bg:#1a232a;--surf:#222e36;--ink:#e6eae8;--mute:#9aa8a8;--line:#35444d;--dark:#131a20;--accent:#a8bea6;--accent-ink:#16201b;--grid:rgba(255,255,255,.05);color-scheme:dark}
@@ -493,9 +499,13 @@ document.getElementById("af").addEventListener("submit",function(e){
 var st=[].slice.call(document.querySelectorAll("#chain .st")),cp=document.getElementById("cp");
 function pick(i){st.forEach(function(e,k){var on=k===i;e.querySelector(".stb").setAttribute("aria-pressed",on?"true":"false");if(on){e.setAttribute("data-open","")}else{e.removeAttribute("data-open")}});
  cp.innerHTML=st[i].querySelector(".desc").innerHTML}
-st.forEach(function(e,i){var b=e.querySelector(".stb");b.addEventListener("click",function(){pick(i)});
+var mq=window.matchMedia("(max-width:900px)");
+function shut(){st.forEach(function(e){e.querySelector(".stb").setAttribute("aria-pressed","false");e.removeAttribute("data-open")})}
+st.forEach(function(e,i){var b=e.querySelector(".stb");b.addEventListener("click",function(){st[0].classList.remove("hint");if(mq.matches&&e.hasAttribute("data-open")){shut()}else{pick(i)}});
  b.addEventListener("mouseenter",function(){if(window.matchMedia("(hover:hover) and (min-width:901px)").matches)pick(i)})});
-pick(0);
+function init(){if(mq.matches){shut();if(!st.some(function(e){return e.classList.contains("touched")}))st[0].classList.add("hint")}else{st[0].classList.remove("hint");if(!st.some(function(e){return e.hasAttribute("data-open")}))pick(0)}}
+st.forEach(function(e){e.querySelector(".stb").addEventListener("click",function(){st.forEach(function(x){x.classList.add("touched")})})});
+init();(mq.addEventListener?mq.addEventListener("change",init):mq.addListener(init));
 })();
 </script>
 <script>
